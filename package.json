@@ -1,0 +1,25 @@
+{
+  "name": "pg-ng-range",
+  "version": "1.0.0",
+  "description": "Pagar.me simple directive to provide a custom range element",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pagarme/pg-ng-range.git"
+  },
+  "keywords": [
+    "angular",
+    "directive",
+    "range",
+    "input"
+  ],
+  "author": "Rafael Violato <rfviolato@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pagarme/pg-ng-range/issues"
+  },
+  "homepage": "https://github.com/pagarme/pg-ng-range"
+}
