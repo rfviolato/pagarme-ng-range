@@ -1,0 +1,57 @@
+html, body, section{ height: 100%; width: 100%; }
+
+$_trnsOpts: 125ms ease;
+
+.pg-range-wrapper{
+
+	width: 600px;
+	margin: 0 auto;
+
+	&.dragging{
+
+		cursor: ew-resize;
+
+	}
+
+	.pg-range {
+
+		$_distance: 25px;
+		position: relative;
+		width: 600px;
+		margin: 15px auto 0 auto;
+		height: 36px;
+		background-color: #fff;
+
+	}
+
+	.range-indicator{
+
+		position: absolute;
+		top:-6px;
+		height: 100%;
+		width: 4px;
+		border-radius: 4px;
+		background-color: #38ad77;
+
+	}
+
+	.range-bars{
+
+		height: 25px;
+		margin-top:10px;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+
+	.bar{
+
+		width: 4px;
+		height: 100%;
+		background-color: #ebebeb;
+		float:left;
+		transition: background-color $_trnsOpts;
+		&:not(:last-child){ margin: 0 2px 0 0 ; }
+		&.green{ background-color: green; }
+
+	}
+}

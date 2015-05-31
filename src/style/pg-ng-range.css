@@ -1,0 +1,37 @@
+html, body, section {
+  height: 100%;
+  width: 100%; }
+
+.pg-range-wrapper {
+  width: 600px;
+  margin: 0 auto; }
+  .pg-range-wrapper.dragging {
+    cursor: ew-resize; }
+  .pg-range-wrapper .pg-range {
+    position: relative;
+    width: 600px;
+    margin: 15px auto 0 auto;
+    height: 36px;
+    background-color: #fff; }
+  .pg-range-wrapper .range-indicator {
+    position: absolute;
+    top: -6px;
+    height: 100%;
+    width: 4px;
+    border-radius: 4px;
+    background-color: #38ad77; }
+  .pg-range-wrapper .range-bars {
+    height: 25px;
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden; }
+  .pg-range-wrapper .bar {
+    width: 4px;
+    height: 100%;
+    background-color: #ebebeb;
+    float: left;
+    transition: background-color 125ms ease; }
+    .pg-range-wrapper .bar:not(:last-child) {
+      margin: 0 2px 0 0; }
+    .pg-range-wrapper .bar.green {
+      background-color: green; }

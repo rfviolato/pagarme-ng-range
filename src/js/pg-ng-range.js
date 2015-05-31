@@ -12,7 +12,14 @@
 	function pgNgRange(){
 
 		var template = [
-
+			'<div class="pg-range-wrapper">' ,
+				'<div class="pg-range">' ,
+					'<div class="range-indicator" ng-style="{left: rangeCtrl.indicatorPosition()+ \'%\'}"></div>' ,
+					'<div class="range-bars">' ,
+						'<div class="bar" ng-class="{\'green\': rangeCtrl.percentage >= $index}" ng-repeat="bar in rangeCtrl.bars"></div>' ,
+					'</div>' ,
+				'</div>' ,
+			'</div>' ,
 		].join('');
 
 		var directive = {
@@ -20,7 +27,8 @@
 			scope:{
 
 			},
-			// template: template,
+			replace: true,
+			template: template,
 			controller: controller,
 			link: postLink,
 
