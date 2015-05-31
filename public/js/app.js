@@ -1,0 +1,1 @@
+angular.module('pg-ng-range-demo', ['pg-ng-range']);

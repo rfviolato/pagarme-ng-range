@@ -36,7 +36,7 @@ gulp.task('style', function(){
 
 gulp.task('build', ['style'], function(){
 
-  return gulp.src('src/js/pg-ng-dropdown.js')
+  return gulp.src('src/js/pg-ng-range.js')
          .pipe(gulp.dest('dest'))
          .pipe(uglify({mangle: false}))
          .pipe(rename(function(path){
