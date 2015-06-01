@@ -1,3 +1,5 @@
+/* Basic stuff */
+
 html, body, section{ height: 100%; width: 100%; }
 
 body{
@@ -6,14 +8,30 @@ body{
 	font-size: 16px;
 	line-height: 32px;
 	color: floralwhite;
-	background-color: cadetblue;
+	background-color: #333;
 	overflow: hidden;
 
 }
 
-$trnsOpts: 125ms ease;
+article{
+
+	display:inline-block;
+	position: absolute;;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+/* Relevant stuff */
+
+$trnsOpts: 200ms ease;
 $barGutter: 2px;
 $barWidth: calc(1% - #{$barGutter});
+$colorizedColor: greenyellow;
+$indicatorColor: darken($colorizedColor, 15%);
+$defaultColor: rgba($colorizedColor, 0.25);
 
 .pg-range-wrapper{
 
@@ -33,12 +51,13 @@ $barWidth: calc(1% - #{$barGutter});
 	.range-indicator{
 
 		position: absolute;
+		z-index: 800;
 		top:-6px;
 		height: 100%;
 		width: $barWidth;
 		border-radius: 5px;
 		cursor: ew-resize;
-		background-color: #282828;
+		background-color: $indicatorColor;
 
 	}
 
@@ -46,7 +65,7 @@ $barWidth: calc(1% - #{$barGutter});
 
 		height: 25px;
 		margin-top:10px;
-		border-radius: 6px;
+		border-radius: 8px;
 		overflow: hidden;
 	}
 
@@ -54,11 +73,17 @@ $barWidth: calc(1% - #{$barGutter});
 
 		width: $barWidth;
 		height: 100%;
-		background-color: #888;
+		background-color: $defaultColor;
 		float:left;
 		transition: background-color $trnsOpts;
+
 		&:not(:last-child){ margin: 0 2px 0 0 ; }
-		&.green{ background-color: green; }
+		&.colorized{ 
+
+			background-color: $colorizedColor;
+
+		}
 
 	}
+
 }

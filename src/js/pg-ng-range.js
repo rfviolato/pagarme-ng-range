@@ -15,11 +15,12 @@
 
 		var template = [
 
-			'<div class="pg-range-wrapper">' ,
+			'<div class="pg-range-wrapper" data-ng-class="">' ,
 				'<div class="pg-range">' ,
-					'<div class="range-indicator" ng-style="{left: Math.round(rangeCtrl.percentage)+ \'%\'}"></div>' ,
+					'<div class="range-indicator" data-ng-style="{left: Math.round(rangeCtrl.percentage)+ \'%\'}"></div>' ,
 					'<div class="range-bars">' ,
-						'<div class="bar" ng-repeat="bar in rangeCtrl.bars"></div>' ,
+						'<div class="bar" data-ng-repeat="bar in rangeCtrl.bars">' ,
+						'</div>' ,
 					'</div>' ,
 				'</div>' ,
 			'</div>' ,
@@ -39,18 +40,25 @@
 
 		};
 
+		return directive;
+
 		function controller($scope){
 
 			var self = this;
 
 			$scope.Math = window.Math;
 			self.bars = [];
+			self.dragging = false;
 
 			for (var i = 99; i >= 0; i--) {
+
 				self.bars.push(i);
+
 			};
 
 			$scope.percentage ? self.percentage = parseInt($scope.percentage) : self.percentage = 0;
+
+
 
 		}
 
@@ -58,6 +66,7 @@
 
 			var holding = false;
 			var initialX = 0;
+			var bars;
 			var initialPerc;
 			var percAux;
 			var width;
@@ -65,20 +74,22 @@
 			$timeout(function(){
 
 				var trigger = angular.element($element[0].querySelector('.range-indicator'));
+				bars = angular.element($element[0].querySelectorAll('.bar'));
 				width = $element.prop('offsetWidth');
 
 				trigger.on('mousedown', mousedown);
-
 				$document.on('mouseup', mouseup);
 				$document.on('mousemove', mousemove);
+
+				paintBars(ctrl.percentage);
 
 			});
 
 			function mousedown(evt){
 
-				if(!holding){
+				if(!ctrl.dragging){
 
-					holding = true;
+					ctrl.dragging = true;
 					initialX = evt.pageX || evt.clientX;
 					initialPerc = ctrl.percentage;
 
@@ -88,9 +99,9 @@
 
 			function mouseup(){
 
-				if(holding){
+				if(ctrl.dragging){
 
-					holding = false;
+					ctrl.dragging = false;
 
 				}
 				
@@ -98,7 +109,7 @@
 
 			function mousemove(evt){
 					
-				if(holding){
+				if(ctrl.dragging){
 					
 					var _x = evt.pageX || evt.clientX;
 					var _limit = width; //mouseX limit
@@ -122,15 +133,33 @@
 
 						}
 
+						paintBars(ctrl.percentage);
+
 					});
 
 				}
 
 			}
 
-		}
+			function paintBars(amount){
 
-		return directive;
+				for (var i = 0; i <= bars.length - 1; i++) {
+					
+					if(i <= amount){
+
+						bars.eq(i).addClass('colorized');
+
+					}else{
+
+						bars.eq(i).removeClass('colorized');
+
+					}
+
+				}
+				
+			}
+
+		}
 		
 	}
 	
