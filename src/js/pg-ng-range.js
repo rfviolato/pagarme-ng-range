@@ -17,7 +17,7 @@
 
 			'<div class="pg-range-wrapper">' ,
 				'<div class="pg-range">' ,
-					'<div class="range-indicator" ng-style="{left: rangeCtrl.percentage+ \'%\'}"></div>' ,
+					'<div class="range-indicator" ng-style="{left: Math.round(rangeCtrl.percentage)+ \'%\'}"></div>' ,
 					'<div class="range-bars">' ,
 						'<div class="bar" ng-repeat="bar in rangeCtrl.bars"></div>' ,
 					'</div>' ,
@@ -29,7 +29,7 @@
 		var directive = {
 
 			scope:{
-				percentage: '@initialPercentage'
+				percentage: '@initialPercentage',
 			},
 			replace: true,
 			template: template,
@@ -43,6 +43,7 @@
 
 			var self = this;
 
+			$scope.Math = window.Math;
 			self.bars = [];
 
 			for (var i = 99; i >= 0; i--) {
@@ -57,62 +58,75 @@
 
 			var holding = false;
 			var initialX = 0;
+			var initialPerc;
+			var percAux;
+			var width;
 
 			$timeout(function(){
 
-				var trigger = $element.find('.range-indicator');
+				var trigger = angular.element($element[0].querySelector('.range-indicator'));
+				width = $element.prop('offsetWidth');
 
-				trigger.on('mousedown', function(evt){
+				trigger.on('mousedown', mousedown);
 
-					if(!holding){
-
-						holding = true;
-						initialX = evt.pageX || evt.clientX;
-
-					}
-
-				});
-
-				$document.on('mouseup', function(){
-
-					if(holding){
-						holding = false;
-						// ctrl.valueChosen();
-						// ctrl.dragEnd();
-					}
-
-				});
-
-				$document.on('mousemove', function(evt){
-					
-					if(holding){
-						
-						var _x = evt.pageX || evt.clientX;
-						var _limit = 600; //mouseX limit
-						var _val = (_x - initialX) + (_limit * percentage);
-						var percentage = _val * 100 / _limit;
-
-						if(percentage < 0){
-
-							percentage = 0;
-
-						}else if(percentage > 100){
-
-							percentage = 100;
-
-						}
-
-						$scope.$apply(function(){
-							// $scope.setAmount(_percentage);
-						});
-
-					}
-
-				});
+				$document.on('mouseup', mouseup);
+				$document.on('mousemove', mousemove);
 
 			});
 
+			function mousedown(evt){
 
+				if(!holding){
+
+					holding = true;
+					initialX = evt.pageX || evt.clientX;
+					initialPerc = ctrl.percentage;
+
+				}
+
+			}
+
+			function mouseup(){
+
+				if(holding){
+
+					holding = false;
+
+				}
+				
+			}
+
+			function mousemove(evt){
+					
+				if(holding){
+					
+					var _x = evt.pageX || evt.clientX;
+					var _limit = width; //mouseX limit
+					var _val = (_x - initialX) + (_limit * (initialPerc / 100));
+
+					percAux = _val * 100 / _limit;
+
+					$scope.$apply(function(){
+
+						if(percAux < 0){
+
+							ctrl.percentage = 0;
+
+						}else if(percAux > 100){
+
+							ctrl.percentage = 100;
+
+						}else{
+
+							ctrl.percentage = percAux;
+
+						}
+
+					});
+
+				}
+
+			}
 
 		}
 
