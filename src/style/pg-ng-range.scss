@@ -1,26 +1,32 @@
 html, body, section{ height: 100%; width: 100%; }
 
-$_trnsOpts: 125ms ease;
+body{
+	
+	font-family: Verdana;
+	font-size: 16px;
+	line-height: 32px;
+	color: floralwhite;
+	background-color: cadetblue;
+	overflow: hidden;
+
+}
+
+$trnsOpts: 125ms ease;
+$barGutter: 2px;
+$barWidth: calc(1% - #{$barGutter});
 
 .pg-range-wrapper{
 
 	width: 600px;
 	margin: 0 auto;
 
-	&.dragging{
-
-		cursor: ew-resize;
-
-	}
-
 	.pg-range {
 
 		$_distance: 25px;
 		position: relative;
-		width: 600px;
 		margin: 15px auto 0 auto;
 		height: 36px;
-		background-color: #fff;
+		width: 100%;
 
 	}
 
@@ -29,9 +35,10 @@ $_trnsOpts: 125ms ease;
 		position: absolute;
 		top:-6px;
 		height: 100%;
-		width: 4px;
-		border-radius: 4px;
-		background-color: #38ad77;
+		width: $barWidth;
+		border-radius: 5px;
+		cursor: ew-resize;
+		background-color: #282828;
 
 	}
 
@@ -39,17 +46,17 @@ $_trnsOpts: 125ms ease;
 
 		height: 25px;
 		margin-top:10px;
-		border-radius: 5px;
+		border-radius: 6px;
 		overflow: hidden;
 	}
 
 	.bar{
 
-		width: 4px;
+		width: $barWidth;
 		height: 100%;
-		background-color: #ebebeb;
+		background-color: #888;
 		float:left;
-		transition: background-color $_trnsOpts;
+		transition: background-color $trnsOpts;
 		&:not(:last-child){ margin: 0 2px 0 0 ; }
 		&.green{ background-color: green; }
 
