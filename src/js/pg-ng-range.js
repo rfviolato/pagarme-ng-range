@@ -15,11 +15,11 @@
 
 		var template = [
 
-			'<div class="pg-range-wrapper" data-ng-class="">' ,
+			'<div class="pg-range-wrapper">' ,
 				'<div class="pg-range">' ,
 					'<div class="range-indicator" data-ng-style="{left: Math.round(rangeCtrl.percentage)+ \'%\'}"></div>' ,
 					'<div class="range-bars">' ,
-						'<div class="bar" data-ng-repeat="bar in rangeCtrl.bars">' ,
+						'<div class="bar" data-ng-repeat="bar in ::rangeCtrl.bars">' ,
 						'</div>' ,
 					'</div>' ,
 				'</div>' ,
@@ -31,6 +31,8 @@
 
 			scope:{
 				percentage: '@initialPercentage',
+				min: '=',
+				max: '=',
 			},
 			replace: true,
 			template: template,
@@ -58,16 +60,13 @@
 
 			$scope.percentage ? self.percentage = parseInt($scope.percentage) : self.percentage = 0;
 
-
-
 		}
 
 		function postLink($scope, $element, attrs, ctrl){
 
-			var holding = false;
-			var initialX = 0;
-			var bars;
+			var initialX;
 			var initialPerc;
+			var bars;
 			var percAux;
 			var width;
 
@@ -92,6 +91,7 @@
 					ctrl.dragging = true;
 					initialX = evt.pageX || evt.clientX;
 					initialPerc = ctrl.percentage;
+					$element.addClass('dragging');
 
 				}
 
@@ -102,6 +102,7 @@
 				if(ctrl.dragging){
 
 					ctrl.dragging = false;
+					$element.removeClass('dragging');
 
 				}
 				

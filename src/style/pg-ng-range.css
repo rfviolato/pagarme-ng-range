@@ -52,3 +52,5 @@ article {
       margin: 0 2px 0 0; }
     .pg-range-wrapper .bar.colorized {
       background-color: greenyellow; }
+  .pg-range-wrapper.dragging {
+    cursor: ew-resize; }

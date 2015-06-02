@@ -86,4 +86,10 @@ $defaultColor: rgba($colorizedColor, 0.25);
 
 	}
 
+	&.dragging{
+
+		cursor: ew-resize;
+
+	}
+
 }
