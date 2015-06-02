@@ -30,9 +30,11 @@
 		var directive = {
 
 			scope:{
-				percentage: '@value',
-				min: '=',
-				max: '=',
+
+				value: '=',
+				min: '@',
+				max: '@',
+
 			},
 			template: template,
 			controller: controller,
@@ -53,15 +55,24 @@
 			self.bars = [];
 			self.dragging = false;
 
-			self.min ? true : self.min = 0;
-			self.max ? true : self.max = 100;
-			self.percentage ? true : self.percentage = 50;
+			self.min ? self.min = parseFloat(self.min) : self.min = 0;
+			self.max ? self.max = parseFloat(self.max) : self.max = 100;
+			self.value ? true : setValue(50);
+			self.percentage = (self.value - self.min) / (self.max - self.min) * 100;
+
+			$scope.$watch('rangeCtrl.percentage', setValue);
 
 			for (var i = 99; i >= 0; i--) {
 
 				self.bars.push(i);
 
 			};
+
+			function setValue(perc){
+
+				self.value = parseFloat(((self.max - self.min) * perc/100) + self.min);
+				
+			}
 
 		}
 
