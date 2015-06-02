@@ -7,7 +7,7 @@ body {
   font-family: Verdana;
   font-size: 16px;
   line-height: 32px;
-  color: floralwhite;
+  color: greenyellow;
   background-color: #333;
   overflow: hidden; }
 
@@ -39,9 +39,7 @@ article {
     background-color: #89e200; }
   .pg-range-wrapper .range-bars {
     height: 25px;
-    margin-top: 10px;
-    border-radius: 8px;
-    overflow: hidden; }
+    margin-top: 10px; }
   .pg-range-wrapper .bar {
     width: calc(1% - 2px);
     height: 100%;
@@ -50,6 +48,12 @@ article {
     transition: background-color 200ms ease; }
     .pg-range-wrapper .bar:not(:last-child) {
       margin: 0 2px 0 0; }
+    .pg-range-wrapper .bar:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px; }
+    .pg-range-wrapper .bar:last-child {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px; }
     .pg-range-wrapper .bar.colorized {
       background-color: greenyellow; }
   .pg-range-wrapper.dragging {

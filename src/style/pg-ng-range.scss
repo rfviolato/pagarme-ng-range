@@ -7,7 +7,7 @@ body{
 	font-family: Verdana;
 	font-size: 16px;
 	line-height: 32px;
-	color: floralwhite;
+	color: greenyellow;
 	background-color: #333;
 	overflow: hidden;
 
@@ -16,7 +16,7 @@ body{
 article{
 
 	display:inline-block;
-	position: absolute;;
+	position: absolute;
 	top:50%;
 	left:50%;
 	transform: translate(-50%, -50%);
@@ -27,6 +27,7 @@ article{
 /* Relevant stuff */
 
 $trnsOpts: 200ms ease;
+$barBorderRadius: 8px;
 $barGutter: 2px;
 $barWidth: calc(1% - #{$barGutter});
 $colorizedColor: greenyellow;
@@ -65,8 +66,7 @@ $defaultColor: rgba($colorizedColor, 0.25);
 
 		height: 25px;
 		margin-top:10px;
-		border-radius: 8px;
-		overflow: hidden;
+
 	}
 
 	.bar{
@@ -78,6 +78,21 @@ $defaultColor: rgba($colorizedColor, 0.25);
 		transition: background-color $trnsOpts;
 
 		&:not(:last-child){ margin: 0 2px 0 0 ; }
+
+		&:first-child{
+
+			border-top-left-radius: $barBorderRadius;
+			border-bottom-left-radius: $barBorderRadius;
+
+		}
+
+		&:last-child{
+
+			border-top-right-radius: $barBorderRadius;
+			border-bottom-right-radius: $barBorderRadius;
+
+		}
+
 		&.colorized{ 
 
 			background-color: $colorizedColor;

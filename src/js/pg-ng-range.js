@@ -17,7 +17,7 @@
 
 			'<div class="pg-range-wrapper">' ,
 				'<div class="pg-range">' ,
-					'<div class="range-indicator" data-ng-style="{left: Math.round(rangeCtrl.percentage)+ \'%\'}"></div>' ,
+					'<div class="range-indicator" data-ng-style="{left: rangeCtrl.indicatorPos() + \'%\'}"></div>' ,
 					'<div class="range-bars">' ,
 						'<div class="bar" data-ng-repeat="bar in ::rangeCtrl.bars">' ,
 						'</div>' ,
@@ -51,9 +51,9 @@
 
 			var self = this;
 
-			$scope.Math = window.Math;
 			self.bars = [];
 			self.dragging = false;
+			self.indicatorPos = indicatorPos;
 
 			self.min ? self.min = parseFloat(self.min) : self.min = 0;
 			self.max ? self.max = parseFloat(self.max) : self.max = 100;
@@ -71,6 +71,20 @@
 			function setValue(perc){
 
 				self.value = parseFloat(((self.max - self.min) * perc/100) + self.min);
+				
+			}
+
+			function indicatorPos(){
+
+				if(self.percentage > 99){
+
+					return 99;
+
+				}else{
+
+					return Math.round(self.percentage);
+
+				}
 				
 			}
 
