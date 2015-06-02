@@ -30,15 +30,16 @@
 		var directive = {
 
 			scope:{
-				percentage: '@initialPercentage',
+				percentage: '@value',
 				min: '=',
 				max: '=',
 			},
-			replace: true,
 			template: template,
 			controller: controller,
-			controllerAs: 'rangeCtrl',
 			link: postLink,
+			controllerAs: 'rangeCtrl',
+			bindToController: true,
+			replace: true,
 
 		};
 
@@ -52,13 +53,15 @@
 			self.bars = [];
 			self.dragging = false;
 
+			self.min ? true : self.min = 0;
+			self.max ? true : self.max = 100;
+			self.percentage ? true : self.percentage = 50;
+
 			for (var i = 99; i >= 0; i--) {
 
 				self.bars.push(i);
 
 			};
-
-			$scope.percentage ? self.percentage = parseInt($scope.percentage) : self.percentage = 0;
 
 		}
 
@@ -113,7 +116,7 @@
 				if(ctrl.dragging){
 					
 					var _x = evt.pageX || evt.clientX;
-					var _limit = width; //mouseX limit
+					var _limit = width;
 					var _val = (_x - initialX) + (_limit * (initialPerc / 100));
 
 					percAux = _val * 100 / _limit;
