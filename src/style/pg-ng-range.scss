@@ -39,6 +39,17 @@ $defaultColor: rgba($colorizedColor, 0.25);
 	width: 600px;
 	margin: 0 auto;
 
+	&, *{
+
+	    -webkit-touch-callout: none;
+	    -webkit-user-select: none;
+	    -khtml-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+
+	}
+
 	.pg-range {
 
 		$_distance: 25px;

@@ -17,7 +17,9 @@
 
 			'<div class="pg-range-wrapper">' ,
 				'<div class="pg-range">' ,
-					'<div class="range-indicator" data-ng-style="{left: rangeCtrl.indicatorPos() + \'%\'}"></div>' ,
+					'<div class="range-indicator" data-ng-style="{left: rangeCtrl.indicatorPos() + \'%\'}">' ,
+						'<span class="range-value" data-ng-show="rangeCtrl.dragging === true" data-ng-bind="rangeCtrl.value"></span>' ,
+					'</div>' ,
 					'<div class="range-bars">' ,
 						'<div class="bar" data-ng-repeat="bar in ::rangeCtrl.bars">' ,
 						'</div>' ,
@@ -55,10 +57,12 @@
 			self.dragging = false;
 			self.indicatorPos = indicatorPos;
 
-			self.min ? self.min = parseFloat(self.min) : self.min = 0;
-			self.max ? self.max = parseFloat(self.max) : self.max = 100;
+			self.min ? true : self.min = 0;
+			self.max ? true : self.max = 100;
 			self.value ? true : setValue(50);
-			self.percentage = (self.value - self.min) / (self.max - self.min) * 100;
+			self.percentage = Math.round((self.value - self.min) / (self.max - self.min) * 100);
+
+			console.log(self.min);
 
 			$scope.$watch('rangeCtrl.percentage', setValue);
 
@@ -66,11 +70,11 @@
 
 				self.bars.push(i);
 
-			};
+			}
 
 			function setValue(perc){
 
-				self.value = parseFloat(((self.max - self.min) * perc/100) + self.min);
+				self.value = Number(((Number(self.max) - Number(self.min)) * (perc/100)) + Number(self.min)).toFixed(2);
 				
 			}
 
@@ -116,7 +120,12 @@
 
 				if(!ctrl.dragging){
 
-					ctrl.dragging = true;
+					$scope.$apply(function(){
+
+						ctrl.dragging = true;
+
+					});
+
 					initialX = evt.pageX || evt.clientX;
 					initialPerc = ctrl.percentage;
 					$element.addClass('dragging');
@@ -129,7 +138,12 @@
 
 				if(ctrl.dragging){
 
-					ctrl.dragging = false;
+					$scope.$apply(function(){
+
+						ctrl.dragging = false;
+						
+					});
+
 					$element.removeClass('dragging');
 
 				}
