@@ -17,7 +17,39 @@ article {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  text-align: center; }
+
+.title {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 20px;
+  letter-spacing: 1px; }
+
+.pg-range-wrapper {
+  padding: 5px 0 20px 0; }
+
+.input-wrapper {
+  display: inline-block; }
+  .input-wrapper input {
+    display: block;
+    width: 100px;
+    border: 0;
+    margin: 0;
+    padding: 14px;
+    color: floralwhite;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 6px;
+    background-color: rgba(102, 102, 102, 0.7); }
+    .input-wrapper input:focus {
+      outline: 0; }
+  .input-wrapper:not(:first-child) {
+    margin: 0 0 0 5px; }
 
 /* Relevant stuff */
 .pg-range-wrapper {

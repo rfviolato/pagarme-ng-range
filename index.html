@@ -18,9 +18,25 @@
 	
 	<section>
 
-		<article ng-init="test = 250">
+		<article ng-init="demo = {
 
-			<div pg-ng-range></div>
+			min: 0,
+			max: 500,
+			amount:250,
+
+		}">
+			
+			<span class="title">CHOOSE THE AMOUNT OF AWESOMENESS</span>
+			<div pg-ng-range min="demo.min" max="demo.max" value="demo.amount"></div>
+			<div class="input-wrapper">
+				MIN<input data-ng-model="demo.min" type="text"/>
+			</div>
+			<div class="input-wrapper">
+				MAX<input data-ng-model="demo.max" type="text"/>
+			</div>
+			<div class="input-wrapper">
+				AMOUNT<input data-ng-model="demo.amount" type="text"/>				
+			</div>
 
 		</article>
 

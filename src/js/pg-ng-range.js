@@ -32,8 +32,8 @@
 			scope:{
 
 				value: '=',
-				min: '@',
-				max: '@',
+				min: '=',
+				max: '=',
 
 			},
 			template: template,
