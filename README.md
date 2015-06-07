@@ -36,6 +36,7 @@ Call the directive in an element via attribute, class or tag name:
 #### Directive Optionals
 
 Like the regular html5 range input, you can set `min`, `max` and `value` attributes.
+The dafault values when no attribute is set is `0` for `min`, `100` for `max` and `50%` of the max for `amount`.
 
 ```html
 <div pg-ng-range min="100" max="500" value="230"></div>
