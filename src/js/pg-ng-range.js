@@ -36,6 +36,7 @@
 				max: '=',
 
 			},
+			restrict: 'AEC',
 			template: template,
 			controller: controller,
 			link: postLink,
