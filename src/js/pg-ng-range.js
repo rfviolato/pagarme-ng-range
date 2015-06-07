@@ -71,7 +71,6 @@
 			function setValue(perc){
 
 				self.value = ((Number(self.max) - Number(self.min)) * (perc/100)) + Number(self.min);
-				console.log(self.value);
 				
 			}
 
