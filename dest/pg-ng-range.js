@@ -199,7 +199,7 @@
 
 			function moveLeft(){
 
-				if(ctrl.percentage >= 0){
+				if(ctrl.percentage > 0){
 					ctrl.percentage -= 1;
 				}
 				
@@ -207,7 +207,7 @@
 
 			function moveRight(){
 
-				if(ctrl.percentage <= 100){
+				if(ctrl.percentage < 100){
 					ctrl.percentage += 1;
 				}
 				
