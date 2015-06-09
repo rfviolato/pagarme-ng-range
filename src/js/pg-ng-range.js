@@ -76,15 +76,7 @@
 
 			function indicatorPos(){
 
-				if(self.percentage > 99){
-
-					return 99;
-
-				}else{
-
-					return Math.round(self.percentage);
-
-				}
+				return Math.round(self.percentage);
 				
 			}
 
@@ -199,16 +191,20 @@
 
 			function moveLeft(){
 
-				if(ctrl.percentage > 0){
+				if(ctrl.percentage-1 >= 0){
 					ctrl.percentage -= 1;
+				}else{
+					ctrl.percentage = 0;
 				}
 				
 			}
 
 			function moveRight(){
 
-				if(ctrl.percentage < 100){
+				if(ctrl.percentage+1 <= 100){
 					ctrl.percentage += 1;
+				}else{
+					ctrl.percentage = 100;
 				}
 				
 			}
