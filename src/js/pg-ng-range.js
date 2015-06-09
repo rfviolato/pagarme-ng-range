@@ -36,7 +36,6 @@
 				max: '=',
 
 			},
-			restrict: 'AEC',
 			template: template,
 			controller: controller,
 			link: postLink,
@@ -108,8 +107,9 @@
 				trigger.on('mousedown', mousedown);
 				$document.on('mouseup', mouseup);
 				$document.on('mousemove', mousemove);
+				$document.on('keydown', keydown)
 
-				paintBars(ctrl.percentage);
+				$scope.$watch('rangeCtrl.percentage', paintBars);
 
 			});
 
@@ -173,12 +173,40 @@
 
 						}
 
-						paintBars(ctrl.percentage);
-
 					});
 
 				}
 
+			}
+
+			function keydown(evt){
+
+				var _code = (evt.which) ? evt.which : evt.keyCode;
+
+				switch(_code){
+
+					case 37:
+						$scope.$apply(moveLeft);
+					break;
+
+					case 39:
+						$scope.$apply(moveRight);
+					break;
+
+				}
+				
+			}
+
+			function moveLeft(){
+
+				ctrl.percentage -= 1;
+				
+			}
+
+			function moveRight(){
+
+				ctrl.percentage += 1;
+				
 			}
 
 			function paintBars(amount){
