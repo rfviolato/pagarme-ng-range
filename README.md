@@ -20,6 +20,11 @@ Import the directive file into your project:
 <script src="bower_components/pg-ng-range/dest/pg-ng-range.min.js"></script>
 ```
 
+If you wish the same style of the example, import the css.
+```html
+<link rel="stylesheet" type="text/css" href="dest/css/pg-ng-range.min.css">
+```
+
 Load the pg-ng-range module:
 ```javscript
 angular.module('myApp', ['pg-ng-range']);
