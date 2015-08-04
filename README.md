@@ -10,14 +10,9 @@ Install via npm package manager:
 $ npm install pg-ng-range
 ```
 
-Or via Bower:
-```
-$ bower install pg-ng-range
-```
-
 Import the directive file into your project:
 ```html
-<script src="bower_components/pg-ng-range/dest/pg-ng-range.min.js"></script>
+<script src="node_modules/pg-ng-range/dest/pg-ng-range.min.js"></script>
 ```
 
 If you wish the same style of the example, import the css.
